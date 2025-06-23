@@ -1,0 +1,97 @@
+body {
+  background: #181c20;
+  color: #e0e6ed;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+.container {
+  max-width: 540px;
+  margin: 40px auto;
+  background: #23272b;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0008;
+  padding: 32px 24px 16px 24px;
+}
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.logo {
+  width: 80px;
+  margin-bottom: 8px;
+}
+h1 {
+  font-size: 1.5em;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+input[type="text"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #181c20;
+  color: #e0e6ed;
+  font-size: 1em;
+}
+button {
+  background: #1e90ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #1565c0;
+}
+#resultat {
+  min-height: 60px;
+}
+.certificat {
+  background: #181c20;
+  border: 2px solid #1e90ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10px;
+}
+.certificat h2 {
+  color: #1e90ff;
+  margin-top: 0;
+}
+.certificat ul {
+  margin: 10px 0 10px 20px;
+}
+.mention {
+  color: #ffd700;
+  font-weight: bold;
+  margin-top: 12px;
+}
+.signature {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+}
+.signature-img {
+  height: 40px;
+  margin-right: 12px;
+  filter: grayscale(1);
+}
+.erreur {
+  color: #ff5252;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  margin-top: 32px;
+  color: #888;
+  font-size: 0.95em;
+} 

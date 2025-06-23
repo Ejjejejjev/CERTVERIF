@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vérification de Certificat – CISN</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header-pro">
+      <div class="logo-badge">
+        <img src="logo.png" alt="Logo CISN" class="logo"/>
+        <span class="badge">CISN</span>
+      </div>
+      <div class="header-text">
+        <h1>Plateforme Officielle de Vérification de Certificats</h1>
+        <p class="subtitle">Consortium International de Sécurité Numérique</p>
+      </div>
+    </header>
+    <main>
+      <form id="verif-form" autocomplete="off">
+        <label for="cert-id">Entrer l'ID du certificat :</label>
+        <div class="input-group">
+          <input type="text" id="cert-id" name="cert-id" required placeholder="Ex: CISN-2024-0001"/>
+          <button type="submit">Vérifier</button>
+        </div>
+      </form>
+      <div id="resultat"></div>
+    </main>
+    <footer>
+      <small>&copy; 2024 CISN – Plateforme de vérification. Tous droits réservés.</small>
+    </footer>
+  </div>
+  <script>
+    async function chargerCertificats() {
+      const response = await fetch('certificats.json');
+      return await response.json();
+    }
+
+    function afficherCertificat(cert) {
+      const pdfFile = `${cert.id}.pdf`;
+      return `
+        <div class="certificat">
+          <h2>${cert.titre}</h2>
+          <div class="infos">
+            <p><strong>Nom du bénéficiaire :</strong> ${cert.nom}</p>
+            <p><strong>Délivré par :</strong> ${cert.delivre_par}</p>
+            <p><strong>Date de délivrance :</strong> ${cert.date}</p>
+          </div>
+          <div class="actions">
+            <a href="${pdfFile}" target="_blank" class="btn-pdf">📄 Télécharger / Voir le certificat PDF</a>
+          </div>
+          <div class="signature">
+            <img src="signature.png" alt="Signature" class="signature-img"/>
+            <span>${cert.signature}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById('verif-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('cert-id').value.trim();
+      const resultat = document.getElementById('resultat');
+      resultat.innerHTML = '<em>Recherche en cours...</em>';
+      const certificats = await chargerCertificats();
+      const cert = certificats.find(c => c.id === id);
+      if (cert) {
+        resultat.innerHTML = afficherCertificat(cert);
+      } else {
+        resultat.innerHTML = '<span class="erreur">Aucun certificat trouvé pour cet ID.</span>';
+      }
+    });
+  </script>
+</body>
+</html> 
